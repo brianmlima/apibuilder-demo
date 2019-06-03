@@ -1,0 +1,9 @@
+.idea
+/local-dev/work
+/local-dev/work/projects
+local-dev/demo-projects/*
+work/*
+!work/.gitkeep
+!work/logs
+work/logs/*
+!work/logs/.gitkeep
