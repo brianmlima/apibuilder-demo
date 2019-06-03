@@ -19,7 +19,7 @@ jobs:
     - working_directory: ~/repo/subfolder
     steps:
       - checkout:
-          - path: ~/repo/images/base-image
+          path: ~/repo/images/base-image
       - docker/check
       - docker/build:
           image: $CIRCLE_PROJECT_USERNAME/apibuilder-demo-base
