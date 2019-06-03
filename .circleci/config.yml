@@ -15,13 +15,13 @@ jobs:
   build-job:
     docker:
       - image: koalaman/shellcheck-alpine:stable
-      - steps:
-        - checkout
-        - docker/install-docker-tools
-      - run:
-          name: Build Images
-          command: |
-            ./bin/build.sh
+  - steps:
+    - checkout
+    - docker/install-docker-tools
+    - run:
+      name: Build Images
+      command: |
+        ./bin/build.sh
 workflows:
   version: 2.1
   workflow:
