@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   docker: circleci/docker@0.5.0
+
 jobs:
   shellcheck:
     docker:
@@ -12,6 +13,16 @@ jobs:
           command: |
             find . -type f -name '*.sh' | wc -l
             find . -type f -name '*.sh' | xargs shellcheck --severity=error --external-sources
+  check-and-build-only:
+    executor: docker-publish/machine
+    steps:
+      - checkout
+      - docker/check
+      - docker/build:
+          path: images/base-image
+
+
+
 #  build-job:
 #    docker:
 #      - image: koalaman/shellcheck-alpine:stable
@@ -27,10 +38,13 @@ workflows:
   workflow:
     jobs:
       - shellcheck
-      - docker/build:
+      - check-and-build-only
+        requires:
+          - shellcheck
+#      - docker/build:
 #          dockerfile: Dockerfile
 #          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
-          path: images/base-image
+#          path: images/base-image
 #          registry: my.docker.registry
 
 
