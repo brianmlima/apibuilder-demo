@@ -14,7 +14,6 @@ jobs:
             find . -type f -name '*.sh' | wc -l
             find . -type f -name '*.sh' | xargs shellcheck --severity=error --external-sources
   check-and-build-only:
-    context: Dev-Tag-Service
     docker:
     - image: circleci/buildpack-deps:stretch
     steps:
@@ -38,6 +37,8 @@ workflows:
   version: 2.1
   workflow:
     jobs:
+      context: Dev-Tag-Service
+
       - shellcheck
       - check-and-build-only
 #        requires:
