@@ -21,6 +21,7 @@ jobs:
       - docker/check
       - docker/build:
           path: images/base-image
+          image: apibuilder-demo-base:latest
 
 
 
