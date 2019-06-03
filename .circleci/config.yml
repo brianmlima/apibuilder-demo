@@ -1,7 +1,6 @@
 version: 2.1
 orbs:
   docker: circleci/docker@0.5.0
-
 jobs:
 #  shellcheck:
 #    - docker:
@@ -16,7 +15,7 @@ jobs:
   check-and-build-only:
     working_directory: ~/repo/subfolder
     docker:
-      image: circleci/buildpack-deps:stretch
+      - image: circleci/buildpack-deps:stretch
     steps:
       - checkout:
           path: ~/repo/images/base-image
