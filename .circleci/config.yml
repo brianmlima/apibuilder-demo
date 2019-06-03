@@ -34,13 +34,12 @@ jobs:
 #      command: |
 #        ./bin/build.sh
 workflows:
-  version: 2.1
+  version: 2
   workflow:
     jobs:
-
       - shellcheck
       - check-and-build-only:
-        context: Dev-Tag-Service
+          context: Dev-Tag-Service
 #        requires:
 #          - shellcheck
 #      - docker/build:
