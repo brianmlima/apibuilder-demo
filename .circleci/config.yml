@@ -11,7 +11,7 @@ jobs:
           name: Check Scripts
           command: |
             find . -type f -name '*.sh' | wc -l
-            find . -type f -name '*.sh' | xargs shellcheck --external-sources
+            find . -type f -name '*.sh' | xargs shellcheck --severity=error --external-sources
 #  build-job:
 #    docker:
 #      - image: koalaman/shellcheck-alpine:stable

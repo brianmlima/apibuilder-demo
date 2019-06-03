@@ -24,7 +24,7 @@
 #Basic Timer Function for global and single commands. Real elapsed time only.
 function timer() {
     if [[ $# -eq 0 ]] ; then
-        echo $(date '+%s') ;
+        echo "$(date '+%s')" ;
     else
         local  stime=$1 ;
         etime=$(date '+%s') ;
