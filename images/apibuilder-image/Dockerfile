@@ -1,6 +1,6 @@
 ########################################################################################################################
 # Build on the demo base we just built
-FROM flowcommerce/apibuilder-postgresql:latest
+FROM apibuilder-demo-base:latest
 ########################################################################################################################
 # add in the local docker root
 ADD docker-root /opt/app
