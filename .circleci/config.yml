@@ -5,10 +5,10 @@ orbs:
 jobs:
   shellcheck:
     docker:
-      - image: koalaman/shellcheck-alpine:stable
+      image: koalaman/shellcheck-alpine:stable
     steps:
-      - checkout
-      - run:
+      checkout
+      run:
           name: Check Scripts
           command: |
             find . -type f -name '*.sh' | wc -l
@@ -20,8 +20,8 @@ jobs:
     steps:
       checkout:
           path: ~/repo/images/base-image
-      - docker/check
-      - docker/build:
+      docker/check
+      docker/build:
           image: $CIRCLE_PROJECT_USERNAME/apibuilder-demo-base
 
 #  build-job:
@@ -38,9 +38,9 @@ workflows:
   version: 2
   workflow:
     jobs:
-      - shellcheck
-      - check-and-build-only:
-          context: Dev-Tag-Service
+      shellcheck
+      check-and-build-only:
+        context: Dev-Tag-Service
 #        requires:
 #          - shellcheck
 #      - docker/build:
