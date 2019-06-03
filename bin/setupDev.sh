@@ -24,7 +24,7 @@ WGET_OUTPUT=false
 WGET_ARGS=""
 [[ ${WGET_SERVER_RESPONSE} = true ]] && WGET_ARGS="--server-response"
 [[ ${WGET_QUITE} = true ]] && WGET_ARGS="${WGET_ARGS} --quiet"
-[[ ${WGET_OUTPUT} = true ]] && WGET_ARGS="${WGET_ARGS} -O -" || OUTPUT=" -O /dev/null"
+[[ ${WGET_OUTPUT} = true ]] && WGET_ARGS="${WGET_ARGS} -O -" || WGET_ARGS=" -O /dev/null"
 
 LOGIN_PATH="/login/dev"
 APP_HOST="http://localhost:${APP_HOST_PORT}" ;
@@ -37,16 +37,16 @@ CREATE_ORG_POST_DATA="name=${ORG_NAME}&key=${ORG_KEY}&visibility=${ORG_VISIBILIT
 ################################################################################
 
 function baseFetch() {
-    wget ${WGET_ARGS} --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 0 ${@}
+    wget ${WGET_ARGS} --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 0 "${@}"
 }
 function baseFetchRetry500() {
-    baseFetch --retry-on-http-error=500 ${@}
+    baseFetch --retry-on-http-error=500 "${@}"
 }
 function fetch() {
-    baseFetch --load-cookies ${COOKIE_FILE} ${@}
+    baseFetch --load-cookies ${COOKIE_FILE} "${@}"
 }
 function fetchCredentials() {
-    baseFetchRetry500 --save-cookies ${COOKIE_FILE} --keep-session-cookies --delete-after ${@}
+    baseFetchRetry500 --save-cookies ${COOKIE_FILE} --keep-session-cookies --delete-after "${@}"
 }
 
 function addGenerator(){
@@ -92,7 +92,7 @@ fi
 
 ################################################################################
 # Add Generators from config.
-for generator_host in ${GENERATORS[@]} ; do
+for generator_host in "${GENERATORS[@]}" ; do
     addGenerator "${APP_HOST}" "${generator_host}"
 done
 
@@ -102,9 +102,9 @@ printMSG "Created Dev API Token ${TOKEN}"
 
 ################################################################################
 # Output an example configuration file
-CONFIG_EXAMPLE_ROOT="${SHARE_ROOT}/apibuilder"
-mkdir -p "${CONFIG_EXAMPLE_ROOT}"
-printMSG "Writing dev apibuilder-cli localhost configuration. This should be placed in your ~/.apibuilder/config file"
+#CONFIG_EXAMPLE_ROOT="${SHARE_ROOT}/apibuilder"
+#mkdir -p "${CONFIG_EXAMPLE_ROOT}"
+printMSG "Dev apibuilder-cli localhost configuration. This should be placed in your ~/.apibuilder/config file"
 echo "[profile localhost]
 api_uri = ${API_HOST}
 token = ${TOKEN} "

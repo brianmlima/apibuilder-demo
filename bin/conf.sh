@@ -1,4 +1,4 @@
-#@IgnoreInspection BashAddShebang
+#!/usr/bin/env bash
 
 
 ################################################################################
@@ -44,7 +44,7 @@ API_CONTAINER_PORT="9001" ;
 APP_HOST_PORT="9000" ;
 API_HOST_PORT="9001" ;
 ################################################################################
-DOCKER_PORT_OPTIONS="-p ${APP_PORT}:${APP_PORT} -p ${API_PORT}:${API_PORT}"
+DOCKER_PORT_OPTIONS="-p ${APP_HOST_PORT}:${APP_CONTAINER_PORT} -p ${API_HOST_PORT}:${API_CONTAINER_PORT}"
 ################################################################################
 ################################################################################
 # DO NOT EDIT STOP.

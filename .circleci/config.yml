@@ -27,6 +27,13 @@ workflows:
   workflow:
     jobs:
       - shellcheck
+      - docker/build:
+#          dockerfile: Dockerfile
+#          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+          path: images/base-image
+#          registry: my.docker.registry
+
+
 #      - build-job:
 #          requires:
 #            - shellcheck

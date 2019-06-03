@@ -24,8 +24,8 @@ GLOBAL_TIMER=`timer`
 ################################################################################
 printHeader
 ################################################################################
-printMSG "Using local share at ${LOCAL_SHARE_PATH} for logs and example files"
-docker run ${DOCKER_RUN_PORT_OPTIONS} ${APP_IMAGE_TAG}
+printMSG "Using image ${APP_IMAGE_TAG} with port options ${DOCKER_PORT_OPTIONS} "
+docker run ${DOCKER_PORT_OPTIONS} ${APP_IMAGE_TAG}
 ################################################################################
 printFooter
 ################################################################################
