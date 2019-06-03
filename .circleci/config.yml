@@ -37,10 +37,10 @@ workflows:
   version: 2.1
   workflow:
     jobs:
-      context: Dev-Tag-Service
 
       - shellcheck
-      - check-and-build-only
+      - check-and-build-only:
+        context: Dev-Tag-Service
 #        requires:
 #          - shellcheck
 #      - docker/build:
