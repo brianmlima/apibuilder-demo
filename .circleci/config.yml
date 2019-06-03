@@ -15,8 +15,8 @@ jobs:
             find . -type f -name '*.sh' | xargs shellcheck --severity=error --external-sources
   check-and-build-only:
     docker:
-    - image: circleci/buildpack-deps:stretch
-    - working_directory: ~/repo/subfolder
+      image: circleci/buildpack-deps:stretch
+    working_directory: ~/repo/subfolder
     steps:
       - checkout:
           path: ~/repo/images/base-image
