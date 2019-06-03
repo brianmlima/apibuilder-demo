@@ -20,7 +20,7 @@ jobs:
       - checkout
 #      - docker/check
       - docker/build:
-          path: images/base-image
+          path: ./images/base-image
           image: $CIRCLE_PROJECT_USERNAME/apibuilder-demo-base
 
 
