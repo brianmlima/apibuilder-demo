@@ -26,7 +26,7 @@ isCommandInstalled docker-squash true
 
 docker pull flowcommerce/apibuilder-postgresql
 
-sudo docker-squash -t apibuilder_postgres_base:latest flowcommerce/apibuilder-postgresql &&
+sudo docker-squash flowcommerce/apibuilder-postgresql &&
 
 printMSG "Building the base container"
 #${BASE_IMAGE_BUILD_CMD} &&
