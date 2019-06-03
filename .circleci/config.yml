@@ -38,9 +38,9 @@ workflows:
   workflow:
     jobs:
       - shellcheck
-      - check-and-build-only:
-        requires:
-          - shellcheck
+      - check-and-build-only
+#        requires:
+#          - shellcheck
 #      - docker/build:
 #          dockerfile: Dockerfile
 #          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
