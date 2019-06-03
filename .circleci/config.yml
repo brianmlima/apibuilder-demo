@@ -13,7 +13,7 @@ jobs:
 #            find . -type f -name '*.sh' | wc -l
 #            find . -type f -name '*.sh' | xargs shellcheck --severity=error --external-sources
   check-and-build-only:
-    working_directory: ~/repo/base-image
+    working_directory: ~/repo/images/base-image
     docker:
       - image: circleci/buildpack-deps:stretch
     steps:
