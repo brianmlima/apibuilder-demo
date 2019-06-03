@@ -19,6 +19,7 @@ jobs:
     steps:
       - checkout:
           path: ~/repo
+      - setup_remote_docker
       - docker/check
       - docker/build:
           image: $CIRCLE_PROJECT_USERNAME/apibuilder-demo-base
