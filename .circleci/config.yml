@@ -14,7 +14,8 @@ jobs:
             find . -type f -name '*.sh' | wc -l
             find . -type f -name '*.sh' | xargs shellcheck --severity=error --external-sources
   check-and-build-only:
-    executor: docker-publish/machine
+    docker:
+    - image: circleci/buildpack-deps:stretch
     steps:
       - checkout
       - docker/check
