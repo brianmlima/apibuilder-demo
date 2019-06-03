@@ -16,11 +16,12 @@ jobs:
   check-and-build-only:
     docker:
     - image: circleci/buildpack-deps:stretch
+    - working_directory: ~/repo/subfolder
     steps:
-      - checkout
+      - checkout:
+          - path: ~/repo/images/base-image
       - docker/check
       - docker/build:
-          path: ./images/base-image
           image: $CIRCLE_PROJECT_USERNAME/apibuilder-demo-base
 
 #  build-job:
