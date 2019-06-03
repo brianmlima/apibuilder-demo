@@ -28,6 +28,6 @@ workflows:
   version: 2
   workflow:
     jobs:
-      shellcheck
-      check-and-build-only:
+      - shellcheck
+      - check-and-build-only:
         context: Dev-Tag-Service
