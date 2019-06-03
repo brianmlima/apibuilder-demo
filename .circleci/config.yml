@@ -24,35 +24,10 @@ jobs:
       - docker/build:
           image: $CIRCLE_PROJECT_USERNAME/apibuilder-demo-base
 
-#  build-job:
-#    docker:
-#      - image: koalaman/shellcheck-alpine:stable
-#    steps:
-#    - checkout
-#    - docker/install-docker-tools
-#    - run:
-#      name: Build Images
-#      command: |
-#        ./bin/build.sh
 workflows:
   version: 2
   workflow:
     jobs:
-      - shellcheck
-      - check-and-build-only:
+      shellcheck
+      check-and-build-only:
         context: Dev-Tag-Service
-#        requires:
-#          - shellcheck
-#      - docker/build:
-#          dockerfile: Dockerfile
-#          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
-#          path: images/base-image
-#          registry: my.docker.registry
-
-
-#      - build-job:
-#          requires:
-#            - shellcheck
-#          filters:
-#            branches:
-#              only: master
