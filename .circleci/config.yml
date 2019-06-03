@@ -21,7 +21,7 @@ jobs:
           path: ~/repo/images/base-image
       - docker/check
       - docker/build:
-          image: $CIRCLE_PROJECT_USERNAME/apibuilder-demo-base:latest
+          image: $CIRCLE_PROJECT_USERNAME/apibuilder-demo-base
 
 workflows:
   version: 2
