@@ -15,7 +15,7 @@ jobs:
   build-job:
     docker:
       - image: koalaman/shellcheck-alpine:stable
-  - steps:
+    steps:
     - checkout
     - docker/install-docker-tools
     - run:
