@@ -21,7 +21,7 @@ jobs:
       - run:
           name: Build Images
           command: |
-            ./bin build.sh
+            ./bin/build.sh
 workflows:
   version: 2.1
   workflow:
