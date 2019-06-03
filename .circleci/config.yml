@@ -38,7 +38,7 @@ workflows:
   workflow:
     jobs:
       - shellcheck
-      - check-and-build-only
+      - check-and-build-only:
         requires:
           - shellcheck
 #      - docker/build:
