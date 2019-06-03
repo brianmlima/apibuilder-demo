@@ -18,7 +18,7 @@ jobs:
       - image: circleci/buildpack-deps:stretch
     steps:
       - checkout:
-          path: ~/repo/images/base-image
+          path: ~/repo
       - docker/check
       - docker/build:
           image: $CIRCLE_PROJECT_USERNAME/apibuilder-demo-base
