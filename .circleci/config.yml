@@ -54,6 +54,9 @@ jobs:
               # Restart Docker with experimental features on.
               sudo sh -c 'echo '\''DOCKER_OPTS="--experimental=true"'\'' >> /etc/default/docker'
               sudo service docker restart
+        - setup_remote_docker:
+            docker_layer_caching: true
+
         - docker/build:
             extra_build_args: '--squash'
             dockerfile: ~/repo/images/base-image/Dockerfile
@@ -69,8 +72,7 @@ jobs:
             image: apibuilder-demo-app
             tag: $CIRCLE_SHA1
         - docker/push:
-            registry: brianmlima
-            image: apibuilder-demo-app
+            image: brianmlima/apibuilder-demo-app
 
 workflows:
   version: 2
