@@ -26,10 +26,13 @@ jobs:
           dockerfile: ~/repo/images/base-image/Dockerfile
           path: ~/repo/images/base-image
           image: brianmlima/apibuilder-demo-base
+          tag: $CIRCLE_SHA1
       - docker/build:
+          extra_build_args: '--build-arg=FROM_VERSION=$CIRCLE_SHA1'
           dockerfile: ~/repo/images/apibuilder-image/Dockerfile
           path: ~/repo/images/apibuilder-image
           image: brianmlima/apibuilder-demo-app
+          tag: $CIRCLE_SHA1
 
 workflows:
   version: 2
