@@ -14,8 +14,8 @@ jobs:
             find ~/repo -type f -name '*.sh' | wc -l
             find ~/repo -type f -name '*.sh' | xargs shellcheck --severity=error --external-sources
   check-and-build:
-#    docker:
-#      - image: circleci/buildpack-deps:stretch
+    docker:
+      - image: circleci/buildpack-deps:stretch
     steps:
       - checkout:
           path: ~/repo
@@ -42,7 +42,7 @@ jobs:
           tag: $CIRCLE_SHA1
   dev-build-and-publish:
       machine:
-        enabled: true
+        - enabled: true
       # Use Ubuntu 14.04 with bleeding edge Docker daemon 17.06.0-ce.
       image: circleci/classic:edge
       steps:
