@@ -26,14 +26,14 @@ jobs:
           name: "Setup custom environment variables"
           command: |
             echo "FROM_VERSION=$CIRCLE_SHA1"
-      - docker/publish:
+      - docker/build:
           extra_build_args: '--squash'
           dockerfile: ~/repo/images/base-image/Dockerfile
           path: ~/repo/images/base-image
           registry: brianmlima
           image: apibuilder-demo-base
           tag: $CIRCLE_SHA1
-      - docker/publish:
+      - docker/build:
           extra_build_args: '--squash --build-arg FROM_VERSION=$CIRCLE_SHA1'
           dockerfile: ~/repo/images/apibuilder-image/Dockerfile
           path: ~/repo/images/apibuilder-image
