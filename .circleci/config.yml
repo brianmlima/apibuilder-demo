@@ -3,15 +3,16 @@ orbs:
   docker: circleci/docker@0.5.0
 jobs:
   shellcheck:
-    - docker:
-      image: koalaman/shellcheck-alpine:stable
-    - steps:
+    docker:
+      - image: koalaman/shellcheck-alpine:stable
+    steps:
       - checkout
+        path: ~/repo
       - run:
           name: Check Scripts
           command: |
-            find . -type f -name '*.sh' | wc -l
-            find . -type f -name '*.sh' | xargs shellcheck --severity=error --external-sources
+            find ~/repo -type f -name '*.sh' | wc -l
+            find ~/repo -type f -name '*.sh' | xargs shellcheck --severity=error --external-sources
   check-and-build:
     docker:
       - image: circleci/buildpack-deps:stretch
