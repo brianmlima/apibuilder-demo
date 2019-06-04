@@ -1,6 +1,6 @@
 ########################################################################################################################
 # Build on the demo base we just built
-FROM brianmlima/apibuilder-demo-base:latest
+FROM brianmlima/apibuilder-demo-base
 ########################################################################################################################
 # add in the local docker root
 ADD docker-root /opt/app
