@@ -1,5 +1,6 @@
 ########################################################################################################################
 # Build on the demo base we just built
+ARG FROM_VERSION
 FROM brianmlima/apibuilder-demo-base:${FROM_VERSION:-latest}
 ########################################################################################################################
 # add in the local docker root

@@ -1,3 +1,4 @@
+ARG FROM_VERSION
 FROM flowcommerce/apibuilder-postgresql:${FROM_VERSION:-latest}
 ########################################################################################################################
 # We are only running system installs here so lets run as root

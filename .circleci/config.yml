@@ -22,6 +22,10 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
       - docker/check
+      - run:
+          name: "Setup custom environment variables"
+          command: |
+            echo "FROM_VERSION=$CIRCLE_SHA1"
       - docker/build:
           dockerfile: ~/repo/images/base-image/Dockerfile
           path: ~/repo/images/base-image
