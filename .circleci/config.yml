@@ -25,14 +25,14 @@ jobs:
       - docker/build:
           dockerfile: ~/repo/images/base-image/Dockerfile
           path: ~/repo/images/base-image
-          label_prefix: brianmlima
+          registry: brianmlima
           image: apibuilder-demo-base
           tag: $CIRCLE_SHA1
       - docker/build:
           extra_build_args: '--build-arg FROM_VERSION=$CIRCLE_SHA1'
           dockerfile: ~/repo/images/apibuilder-image/Dockerfile
           path: ~/repo/images/apibuilder-image
-          label_prefix: brianmlima
+          registry: brianmlima
           image: apibuilder-demo-app
           tag: $CIRCLE_SHA1
 
