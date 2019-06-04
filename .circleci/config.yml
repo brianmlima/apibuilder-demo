@@ -41,8 +41,8 @@ jobs:
           image: apibuilder-demo-app
           tag: $CIRCLE_SHA1
   dev-build-and-publish:
-    machine:
-      enabled: true
+      machine:
+        enabled: true
       # Use Ubuntu 14.04 with bleeding edge Docker daemon 17.06.0-ce.
       image: circleci/classic:edge
       steps:
