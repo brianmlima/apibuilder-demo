@@ -27,7 +27,7 @@ declare -a GENERATORS=(
 ################################################################################
 # Image Stuffs
 BASE_IMAGE_TAG="brianmlima/apibuilder-demo-base:latest"
-APP_IMAGE_TAG="brianmlima/apibuilder_demo_app:latest"
+APP_IMAGE_TAG="brianmlima/apibuilder-demo-app:latest"
 IMAGES_PATH="${PROJECT_HOME}/images"
 BASE_IMAGE_HOME="${IMAGES_PATH}/base-image"
 BASE_IMAGE_BUILD_CMD="${BASE_IMAGE_HOME}/bin/build.sh"

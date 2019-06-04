@@ -21,11 +21,15 @@ jobs:
           path: ~/repo
       - setup_remote_docker:
           docker_layer_caching: true
-#      - docker/check
+      - docker/check
       - docker/build:
           dockerfile: ~/repo/images/base-image/Dockerfile
           path: ~/repo/images/base-image
           image: brianmlima/apibuilder-demo-base
+      - docker/build:
+          dockerfile: ~/repo/images/apibuilder-image/Dockerfile
+          path: ~/repo/images/apibuilder-image
+          image: brianmlima/apibuilder-demo-app
 
 workflows:
   version: 2
