@@ -23,6 +23,7 @@ jobs:
           docker_layer_caching: true
 #      - docker/check
       - docker/build:
+          dockerfile: ~/repo/images/base-image/Dockerfile
           path: ~/repo/images/base-image
           image: brianmlima/apibuilder-demo-base
 
