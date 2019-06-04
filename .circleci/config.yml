@@ -70,7 +70,7 @@ jobs:
             tag: $CIRCLE_SHA1
         - docker/push:
             registry: brianmlima
-            image: apibuilder-demo-app:$CIRCLE_SHA1
+            image: apibuilder-demo-app
 
 workflows:
   version: 2
