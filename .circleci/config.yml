@@ -48,10 +48,12 @@ jobs:
       steps:
         - checkout:
             path: ~/repo
-        command: |
-            # Restart Docker with experimental features on.
-            sudo sh -c 'echo '\''DOCKER_OPTS="--experimental=true"'\'' >> /etc/default/docker'
-            sudo service docker restart
+        - run:
+            name: "Setup custom environment variables"
+            command: |
+              # Restart Docker with experimental features on.
+              sudo sh -c 'echo '\''DOCKER_OPTS="--experimental=true"'\'' >> /etc/default/docker'
+              sudo service docker restart
         - docker/build:
             extra_build_args: '--squash'
             dockerfile: ~/repo/images/base-image/Dockerfile
