@@ -6,8 +6,8 @@ jobs:
     docker:
       - image: koalaman/shellcheck-alpine:stable
     steps:
-      - checkout
-        path: ~/repo
+      - checkout:
+          path: ~/repo
       - run:
           name: Check Scripts
           command: |
