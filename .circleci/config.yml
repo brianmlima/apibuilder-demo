@@ -14,8 +14,8 @@ jobs:
             find ~/repo -type f -name '*.sh' | wc -l
             find ~/repo -type f -name '*.sh' | xargs shellcheck --severity=error --external-sources
   check-and-build:
-    docker:
-      - image: circleci/buildpack-deps:stretch
+#    docker:
+#      - image: circleci/buildpack-deps:stretch
     steps:
       - checkout:
           path: ~/repo
@@ -40,11 +40,39 @@ jobs:
           registry: brianmlima
           image: apibuilder-demo-app
           tag: $CIRCLE_SHA1
+  dev-build-and-publish:
+    machine:
+      enabled: true
+      # Use Ubuntu 14.04 with bleeding edge Docker daemon 17.06.0-ce.
+      image: circleci/classic:edge
+      steps:
+        - checkout:
+            path: ~/repo
+        - command: |
+            # Restart Docker with experimental features on.
+            sudo sh -c 'echo '\''DOCKER_OPTS="--experimental=true"'\'' >> /etc/default/docker'
+            sudo service docker restart
+        - docker/build:
+            extra_build_args: '--squash'
+            dockerfile: ~/repo/images/base-image/Dockerfile
+            path: ~/repo/images/base-image
+            registry: brianmlima
+            image: apibuilder-demo-base
+            tag: $CIRCLE_SHA1
+        - docker/build:
+            extra_build_args: '--squash --build-arg FROM_VERSION=$CIRCLE_SHA1'
+            dockerfile: ~/repo/images/apibuilder-image/Dockerfile
+            path: ~/repo/images/apibuilder-image
+            registry: brianmlima
+            image: apibuilder-demo-app
+            tag: $CIRCLE_SHA1
 
 workflows:
   version: 2
   workflow:
     jobs:
      - shellcheck
-     - check-and-build:
-        context: Dev-Tag-Service
+#     - check-and-build:
+#        context: Dev-Tag-Service
+     - dev-build-and-publish:
+         context: Dev-Tag-Service
