@@ -43,8 +43,8 @@ jobs:
   dev-build-and-publish:
       machine:
         - enabled: true
-      # Use Ubuntu 14.04 with bleeding edge Docker daemon 17.06.0-ce.
-      image: circleci/classic:edge
+        # Use Ubuntu 14.04 with bleeding edge Docker daemon 17.06.0-ce.
+        - image: circleci/classic:edge
       steps:
         - checkout:
             path: ~/repo
