@@ -19,10 +19,11 @@ jobs:
     steps:
       - checkout:
           path: ~/repo
-      - setup_remote_docker
+      - setup_remote_docker:
+          docker_layer_caching: true
       - docker/check
       - docker/build:
-          image: $CIRCLE_PROJECT_USERNAME/apibuilder-demo-base
+          image: apibuilder-demo-base:latest
 
 workflows:
   version: 2
