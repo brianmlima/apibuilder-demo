@@ -23,7 +23,7 @@ jobs:
           docker_layer_caching: true
       - docker/check
       - docker/build:
-          image: apibuilder-demo-base:latest
+          image: brianmlima/apibuilder-demo-base
 
 workflows:
   version: 2
