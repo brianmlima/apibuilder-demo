@@ -71,7 +71,7 @@ jobs:
         - run:
             name: "Push!"
             command: |
-                docker login -u $DOCKER_USER -p $DOCKER_PASS
+                docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
                 docker push brianmlima/apibuilder-demo-app:$CIRCLE_SHA1
 
 workflows:
