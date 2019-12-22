@@ -5,20 +5,18 @@
 # Editable configuration.
 ################################################################################
 
-ORG_NAME="testOrg"
+ORG_NAME="bml"
 ORG_KEY="${ORG_NAME}"
 ORG_VISIBILITY="organization"
-ORG_NAMESPACE="org.test"
+ORG_NAMESPACE="org.bml"
 
 ################################################################################
 # Add or remove any generators you want added during setup. NOTE these must be
 # running when the setup script is executed.
 declare -a GENERATORS=(
-"https://generator.apibuilder.io"
-"https://apibuilder-js-generator.flow.io"
-"https://kd8pxibtlj.execute-api.us-east-1.amazonaws.com/Prod"
-"https://nk1os5d7vg.execute-api.us-east-1.amazonaws.com/Prod"
-"https://fq7ggcnkad.execute-api.eu-west-1.amazonaws.com/dev"
+ "https://generator.apibuilder.io"
+ "http://docker.for.mac.localhost:9002"
+ "https://apibuilder-js-generator.flow.io"
 );
 
 ################################################################################

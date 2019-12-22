@@ -83,11 +83,11 @@ STATUS=${?}
 if [[ ${STATUS} = 0 ]]; then
     printMSG "Organization ${ORG_NAME} already exists. Attempting update."
     fetch --post-data="${CREATE_ORG_POST_DATA}" "${APP_HOST}/org/editPost?org_key=${ORG_KEY}"
-    checkStatus ${?} "Organization ${ORG_NAME} Update success" "Failed to update ${ORG_NAME} organization. Cowardly exiting" ;
+    checkStatus ${?} "${PASS} Organization ${ORG_NAME} Update success" "${FAIL} Unable to update ${ORG_NAME} organization. Cowardly exiting" ;
 else
     printMSG "Organization ${ORG_NAME} does not yet exist. Attempting create"
     fetch  --post-data="${CREATE_ORG_POST_DATA}" ${APP_HOST}/org/createPost
-    checkStatus ${?} "Organization ${ORG_NAME} creation success" "Failed to create  ${ORG_NAME} organization. Cowardly exiting" ;
+    checkStatus ${?} "${PASS} Organization ${ORG_NAME} creation success" "${FAIL} Unable to create  ${ORG_NAME} organization. Cowardly exiting" ;
 fi
 
 ################################################################################
@@ -95,10 +95,9 @@ fi
 for generator_host in "${GENERATORS[@]}" ; do
     addGenerator "${APP_HOST}" "${generator_host}"
 done
-
 # Create a token and echo it so we can use it.
 TOKEN=`createToken`
-printMSG "Created Dev API Token ${TOKEN}"
+printMSG "${PASS} Created Dev API Token ${TOKEN}"
 
 ################################################################################
 # Output an example configuration file

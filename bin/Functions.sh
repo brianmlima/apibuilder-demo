@@ -20,6 +20,15 @@
 # FUNCTIONS
 ################################################################################
 
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+NC='\033[0m'
+FAIL="${RED}FAIL${NC}"
+PASS="${GREEN}PASS${NC}"
+INFO="${BLUE}INFO${NC}"
+
+
 ################################################################################
 #Basic Timer Function for global and single commands. Real elapsed time only.
 function timer() {
@@ -85,7 +94,7 @@ function printBreak(){
 ################################################################################
 function printMSG(){
  #printBreak ;
- echo "# ${1}" ;
+ echo -e "# ${1}" ;
  #printBreak ;
 };
 ################################################################################
@@ -199,20 +208,37 @@ function isCommandInstalled(){
   local commandName=${1} ;
   local shouldFail=${2:-true} ;
   if  hash "${commandName}" 2>/dev/null ; then
-    printMSG "Verified command ${commandName} IS installed."
+    printMSG "${PASS} Verified command ${commandName} IS installed."
     return 0;
   else
     if "${shouldFail}" = true ; then
-        printMSG "Command ${commandName} IS NOT installed. Cowardly Failing"
+        printMSG "${FAIL} Command ${commandName} IS NOT installed. Cowardly Failing"
+        printFooter
         exit 1 ;
     else
-        printMSG "Command ${commandName} IS NOT installed."
+        printMSG "${FAIL} Command ${commandName} IS NOT installed."
         return 1
     fi
   fi
 }
 
-
+function isDockerRunning(){
+    local shouldFail=${2:-true} ;
+    # Check to see if docker is running
+    if ( docker stats --no-stream &> /dev/null ); then
+        printMSG "${PASS} Verified docker is running."
+        return 0;
+    else
+        if "${shouldFail}" = true ; then
+            printMSG "${FAIL} Docker is not running. Cowardly Failing"
+            printFooter
+            exit 1 ;
+        else
+            printMSG "${FAIL} Command ${commandName} IS NOT installed."
+            return 1
+        fi
+    fi
+}
 
 
 

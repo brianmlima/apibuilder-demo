@@ -21,29 +21,44 @@ printHeader
 ################################################################################
 
 isCommandInstalled docker true
-
 isCommandInstalled docker-squash true
+isDockerRunning true
 
+################################################################################
+printMSG "${INFO} Pulling latest flowcommerce/apibuilder-postgresql"
 docker pull flowcommerce/apibuilder-postgresql
-
+printMSG "${INFO} Squashing flowcommerce/apibuilder-postgresql before building our base container"
 sudo docker-squash flowcommerce/apibuilder-postgresql &&
+################################################################################
 
-printMSG "Building the base container"
-#${BASE_IMAGE_BUILD_CMD} &&
-################################################################################
-cd ${BASE_IMAGE_HOME} && docker build --file Dockerfile --tag ${BASE_IMAGE_TAG} . &&
-sudo docker-squash -t ${BASE_IMAGE_TAG} ${BASE_IMAGE_TAG} &&
+
+function buildCOntainer(){
+    local IMAGE_HOME=${1}
+    local IMAGE_TAG=${2}
+    loal IMAGE_PROSE_NAME=${3}
+    printMSG "${INFO} Building the ${IMAGE_PROSE_NAME}"
+    cd ${BASE_IMAGE_HOME} && docker build --file Dockerfile --tag ${IMAGE_TAG} . &&
+    printMSG "${INFO} Squashing our ${IMAGE_PROSE_NAME}" &&
+    sudo docker-squash -t ${IMAGE_TAG} ${IMAGE_TAG}
+    return ${?}
+}
+
+buildCOntainer "${BASE_IMAGE_HOME}" "${BASE_IMAGE_TAG}" "base container" &&
 
 ################################################################################
-printMSG "Building the application container" &&
+#printMSG "${INFO} Building the base container"
+#cd ${BASE_IMAGE_HOME} && docker build --file Dockerfile --tag ${BASE_IMAGE_TAG} . &&
+#printMSG "${INFO} Squashing our base container" &&
+#sudo docker-squash -t ${BASE_IMAGE_TAG} ${BASE_IMAGE_TAG} &&
 ################################################################################
+
+################################################################################
+printMSG "${INFO} Building our application container" &&
 cd ${APP_IMAGE_HOME} && docker build --file Dockerfile --tag ${APP_IMAGE_TAG} . &&
+printMSG "${INFO} Squashing our application container" &&
 sudo docker-squash -t ${APP_IMAGE_TAG} ${APP_IMAGE_TAG} &&
-
-
 ################################################################################
 
-#${APP_IMAGE_BUILD_CMD}
 ################################################################################
 printFooter
 ################################################################################
